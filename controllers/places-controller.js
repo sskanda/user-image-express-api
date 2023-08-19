@@ -1,3 +1,5 @@
+const uuid = require("uuid");
+
 const DUMMY_PLACES = [
   {
     id: "p1",
@@ -29,5 +31,20 @@ const getPlaceByUserId = (req, res, next) => {
   else res.json(place);
 };
 
+const createdPlace = (req, res, next) => {
+  const { title, description, coordinates, address, creator } = req.body; //same as const title = req.body.title , description = req.body.description
+  const createdPlace = {
+    id: uuid.v4(),
+    title: title,
+    description,
+    location: coordinates,
+    address: address,
+    creator,
+  };
+  DUMMY_PLACES.push(createdPlace);
+  res.status(201).json(DUMMY_PLACES);
+};
+
 exports.getPlaceById = getPlaceById;
 exports.getPlaceByUserId = getPlaceByUserId;
+exports.createdPlace = createdPlace;
