@@ -9,4 +9,6 @@ router.get("/user/:uid", placeController.getPlaceByUserId);
 
 router.post("/", placeController.createdPlace);
 
+router.patch("/:pid", placeController.updatePlace);
+
 module.exports = router;
