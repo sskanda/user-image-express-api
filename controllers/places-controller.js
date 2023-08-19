@@ -1,6 +1,6 @@
 const uuid = require("uuid");
 
-const DUMMY_PLACES = [
+let DUMMY_PLACES = [
   {
     id: "p1",
     title: "Empire State Building",
@@ -56,7 +56,14 @@ const updatePlace = (req, res, next) => {
   res.status(201).json(updatedPlace);
 };
 
+const deletePlace = (req, res, next) => {
+  const placeid = req.params.pid;
+  DUMMY_PLACES = DUMMY_PLACES.filter((p) => p.id !== placeid);
+  res.status(201).json(DUMMY_PLACES);
+};
+
 exports.getPlaceById = getPlaceById;
 exports.getPlaceByUserId = getPlaceByUserId;
 exports.createdPlace = createdPlace;
 exports.updatePlace = updatePlace;
+exports.deletePlace = deletePlace;
